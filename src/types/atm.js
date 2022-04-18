@@ -1,4 +1,5 @@
-const { gql } = require('apollo-server');
+import { gql } from 'apollo-server';
+import Atm from '../schemas/atm'
 
 export const typeDefs = gql`
   type UserAccount {
@@ -17,12 +18,13 @@ export const typeDefs = gql`
 export const resolvers = {
   Query: {
     getUserAccount: async (_, { id }) => {
-      return 0
+      const result = await Atm.find({ id })
+      return result
     },
   },
   Mutation: {
     saveBalance: async (_, { id, amount }) => {
-      const record = await saveFn(id, amount)
+      const record = await Atm.updateOne({ id, amount })
       return record
     }
   }
