@@ -1,11 +1,10 @@
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer, } from 'apollo-server';
 import mongoose from "mongoose";
-import { typeDefs, resolvers } from "types/atm";
+import { typeDefs, resolvers } from "./types/atm";
 
 mongoose.connect("mongodb://localhost:27017/atm", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: true,
 });
 
 const db = mongoose.connection;
